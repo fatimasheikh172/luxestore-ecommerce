@@ -264,7 +264,7 @@ const products = [
     price: 75.00,
     category: 'Accessories',
     images: [
-      'https://images.unsplash.com/photo-1624222247344-550fb60583c1?w=800'
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800'
     ],
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Black', 'Brown', 'Tan'],

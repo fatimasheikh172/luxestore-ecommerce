@@ -19,9 +19,10 @@ export default function HomePage() {
     try {
       const response = await fetch('/api/products?limit=8&sortBy=rating');
       const data = await response.json();
-      setFeaturedProducts(data.products);
+      setFeaturedProducts(data.products || []);
     } catch (error) {
       console.error('Error fetching featured products:', error);
+      setFeaturedProducts([]);
     } finally {
       setLoading(false);
     }
@@ -88,6 +89,7 @@ export default function HomePage() {
             src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600"
             alt="Hero"
             fill
+            sizes="100vw"
             className="object-cover opacity-40"
             priority
           />
@@ -123,6 +125,7 @@ export default function HomePage() {
                 src={category.image}
                 alt={category.name}
                 fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
                 className="object-cover transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-40 transition-all duration-300" />
@@ -153,7 +156,7 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-          ) : (
+          ) : featuredProducts.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredProducts.map((product) => (
                 <ProductCard
@@ -166,6 +169,16 @@ export default function HomePage() {
                   category={product.category}
                 />
               ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-gray-600 mb-4">Unable to load products. Please check your database connection.</p>
+              <button
+                onClick={fetchFeaturedProducts}
+                className="text-[#D4AF37] hover:underline"
+              >
+                Try Again
+              </button>
             </div>
           )}
 

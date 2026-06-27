@@ -126,6 +126,7 @@ export default function ProductPage() {
                 src={product.images[selectedImage]}
                 alt={product.name}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -138,7 +139,7 @@ export default function ProductPage() {
                     selectedImage === index ? 'border-black' : 'border-transparent'
                   }`}
                 >
-                  <Image src={image} alt={`${product.name} ${index + 1}`} fill className="object-cover" />
+                  <Image src={image} alt={`${product.name} ${index + 1}`} fill sizes="(max-width: 1024px) 25vw, 12vw" className="object-cover" />
                 </button>
               ))}
             </div>
