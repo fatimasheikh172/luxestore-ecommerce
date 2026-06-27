@@ -5,7 +5,7 @@ const groq = new Groq({
 });
 
 export async function createChatCompletion(
-  messages: Array<{ role: string; content: string }>,
+  messages: Array<{ role: 'user' | 'assistant' | 'system'; content: string }>,
   systemPrompt: string
 ) {
   try {
